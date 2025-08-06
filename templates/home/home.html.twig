@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %} Accueil {% endblock %}
+{% block body %}
+  <h1>🌧️ Qu'est-ce que Pluvio ?</h1>
+  <div class="card text-white bg-primary mb-3">
+    <div class="card-header">Pluvio est un système de suivi et de visualisation des précipitations recueillies dans des cuves connectées.
+      Grâce à nos capteurs sans fil, les données sont automatiquement collectées et affichées ici, pour un suivi simple et précis.</div>
+    <div class="card-body">
+      <h4 class="card-title">Fonctionnalités du site Pluvio ?</h4>
+      <p class="card-text">Visualisation des niveaux de cuves en direct, Historique des précipitations, Graphiques clairs et interactifs, Accès sécurisé via votre compte utilisateur</p>
+    </div>
+  </div>
+  <!-- 🎬 JS : Mode Sombre -->
+  <script>
+      document.getElementById('darkModeToggle').addEventListener('click', function () {
+          document.body.classList.toggle('dark-mode');
+      });
+  </script>
+{% endblock %}

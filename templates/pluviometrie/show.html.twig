@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pluviometrie{% endblock %}
+
+{% block body %}
+    <h1>Pluviometrie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pluviometrie.id }}</td>
+            </tr>
+            <tr>
+                <th>Pluvio_heure</th>
+                <td>{{ pluviometrie.pluvioHeure }}</td>
+            </tr>
+            <tr>
+                <th>Horodatage</th>
+                <td>{{ pluviometrie.horodatage ? pluviometrie.horodatage|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pluviometrie_index') }}">
+        <button type="button" class="btn btn-dark disabled">Retour</button></a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_pluviometrie_edit', {'id': pluviometrie.id}) }}">
+        <button type="button" class="btn btn-warning">Modifier</button>
+    </a>
+    {% endif %}
+
+{% endblock %}

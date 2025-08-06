@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuve{% endblock %}
+
+{% block body %}
+    <h1>Cuve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cuve.id }}</td>
+            </tr>
+            <tr>
+                <th>Niveau_cm</th>
+                <td>{{ cuve.niveauCm }}</td>
+            </tr>
+            <tr>
+                <th>Horodatage</th>
+                <td>{{ cuve.horodatage ? cuve.horodatage|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('cuve_index') }}">
+        <button type="button" class="btn btn-dark disabled">Retour</button></a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_cuve_edit', {'id': cuve.id}) }}">
+        <button type="button" class="btn btn-warning">Modifier</button>
+    </a>
+    {% endif %}
+
+{% endblock %}

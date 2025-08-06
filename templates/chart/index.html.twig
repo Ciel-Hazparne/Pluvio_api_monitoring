@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Graphe{% endblock %}
+
+{% block body %}
+  <h2 class="text-center fw-bold mt-4">{{ title }}</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="text-center mb-3">
+        <a href="{{ path('mesures_chart', {'type': 'pluviometrie', 'day': selectedDay, 'hour': selectedHour}) }}"
+           class="btn {% if dataType == 'pluviometrie' %}btn-primary{% else %}btn-outline-primary{% endif %} fw-bold">
+          Pluviométrie 🌧
+        </a>
+        <a href="{{ path('mesures_chart', {'type': 'cuve', 'day': selectedDay, 'hour': selectedHour}) }}"
+           class="btn {% if dataType == 'cuve' %}btn-danger{% else %}btn-outline-danger{% endif %} fw-bold">
+          Niveau Cuve 💧
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <form method="get" class="text-center mb-4">
+        <input type="hidden" name="type" value="{{ dataType }}">
+
+        <label for="day" class="fw-bold">Jour :</label>
+        <input type="date" name="day" value="{{ selectedDay|default('') }}">
+
+        <label for="hour" class="fw-bold">Heure :</label>
+        <select name="hour">
+          <option value="">Toutes</option>
+          {% for i in 0..23 %}
+            {% set hourVal = i < 10 ? '0' ~ i : i %}
+            <option value="{{ hourVal }}" {% if selectedHour == hourVal %}selected{% endif %}>{{ hourVal }}h</option>
+          {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn-success fw-bold">Filtrer</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card p-3 shadow-sm">
+        <div class="card-body text-center">
+          {% if chart %}
+            {{ render_chart(chart) }}
+          {% else %}
+            <p class="text-muted">Aucune donnée à afficher.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

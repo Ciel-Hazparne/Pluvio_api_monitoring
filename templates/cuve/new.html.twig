@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuve{% endblock %}
+
+{% block body %}
+    <h1>Crée une nouvelle entrée</h1>
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    {{ include('cuve/_form.html.twig') }}
+
+    <a href="{{ path('cuve_index') }}">
+        <button type="button" class="btn mt-3 btn-dark disabled">Retour</button>
+    </a>
+{% endblock %}

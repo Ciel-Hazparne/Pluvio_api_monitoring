@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pluviometrie{% endblock %}
+
+{% block body %}
+    <h1>Crée une nouvelle entrée</h1>
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+<div class="row mt-3">
+    {{ include('pluviometrie/_form.html.twig') }}
+</div>
+    <div class="row mt-3">
+        <div class="col-md-6 d-flex justify-content-start">
+            <a href="{{ path('app_pluviometrie_index') }}">
+                <button type="button" class="btn btn-dark disabled">Retour</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+api_platform:
+    title: Hello API Platform
+    version: 1.0.0
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+
+    formats:
+        json: ['application/json']
+        jsonld: ['application/ld+json']
+        html: ['text/html']
+
+    swagger:
+        versions: [3]
+        api_keys:
+            Authorization:
+                name: Authorization
+                type: header
+
+    enable_swagger: true  # Active Swagger
+    enable_swagger_ui: true  # Active l'interface utilisateur de Swagger
+    enable_re_doc: false  # Si tu veux désactiver ReDoc

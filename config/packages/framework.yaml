@@ -1,0 +1,14 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    default_locale: fr
+
+    session: true
+
+    request:
+        formats:
+            json: ['application/json']
+
+    serializer:
+        enabled: true
+        enable_attributes: true
+

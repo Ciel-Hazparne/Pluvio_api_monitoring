@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+  <div class="container">
+    <a href="#" class="navbar-brand">Projet Pluvio 2025</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+      <span class="navbar-toggle-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="{{ path('home') }}" class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if current_menu is defined and current_menu == 'mesureschart' %}active{% endif %}"
+               href="{{ path('mesures_chart') }}" class="nav-link"><i class="bi bi-pencil-square"></i>Graphes</a>
+ 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if current_menu is defined and current_menu == 'cuve' %}active{% endif %}"
+               href="{{ path('cuve_index') }}" class="nav-link"><i class="bi bi-pencil-square"></i>Niveau Cuve</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link {% if current_menu is defined and current_menu == 'pluviometrie' %}active{% endif %}"
+               href="{{ path('app_pluviometrie_index') }}" class="nav-link"><i class="bi bi-pencil-square"></i>Pluviométrie</a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link {% if current_menu is defined and current_menu == 'user' %}active{% endif %}"
+               href="{{ path('app_user_index') }}" class="nav-link"><i class="bi bi-pencil-square"></i> Administration</a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <ul class="navbar-nav mr-auto">
+        {% if app.user %}
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-user-circle-o"></i> {{ app.user.email }}</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ path('logout') }}" class="nav-link">Déconnexion</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

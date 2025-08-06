@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pluviometrie{% endblock %}
+
+{% block body %}
+    <h1>Pluviometrie</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>pluviométrie en heure</th>
+                <th>Horodatage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pluviometrie in pluviometries %}
+            <tr>
+
+                <td>{{ pluviometrie.pluvioHeure }}</td>
+                <td>{{ pluviometrie.horodatage ? pluviometrie.horodatage|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_pluviometrie_show', {'id': pluviometrie.id}) }}">
+                        <button type="button" class="btn btn-info">Info</button></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_pluviometrie_edit', {'id': pluviometrie.id}) }}">
+                        <button type="button" class="btn btn-warning">Modifier</button>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_pluviometrie_new') }}">
+        <button type="button" class="btn btn-success mb-3">Nouvelle Donnée</button></a>
+    {% endif %}
+    <a href="{{ path('pluvio_export_excel') }}" class="btn btn-info mb-3">Export au format Excel</a>
+
+    <div class="pagination">
+        {{ knp_pagination_render(pluviometries) }}
+    </div>
+
+{% endblock %}

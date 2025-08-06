@@ -1,0 +1,6 @@
+.form-group label,
+label {
+    display: block !important;
+    float: none !important;
+    margin-bottom: 0.3rem;
+}

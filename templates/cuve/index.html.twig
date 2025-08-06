@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuve{% endblock %}
+
+{% block body %}
+    <h1>Niveau Cuve</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Niveau en cm</th>
+                <th>Horodatage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cuve in cuves %}
+            <tr>
+
+                <td>{{ cuve.niveauCm }}</td>
+                <td>{{ cuve.horodatage ? cuve.horodatage|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+
+                    <a href="{{ path('app_cuve_show', {'id': cuve.id}) }}">
+                        <button type="button" class="btn btn-info">Info</button></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_cuve_edit', {'id': cuve.id}) }}">
+                        <button type="button" class="btn btn-warning">Modifier</button>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_cuve_new') }}">
+        <button type="button" class="btn btn-success mb-3">Nouvelle Donnée</button></a>
+    {% endif %}
+    <a href="{{ path('cuve_export_excel') }}" class="btn btn-info mb-3">Export au format Excel</a>
+
+    <div class="pagination">
+        {{ knp_pagination_render(cuves) }}
+    </div>
+{% endblock %}
